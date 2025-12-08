@@ -21,7 +21,7 @@ function Home() {
 
     return (
         <div>
-            <ProfileCard users={users} />
+            <ProfileCard users={users} setUsers={setUsers} />
         </div>
     )
 }

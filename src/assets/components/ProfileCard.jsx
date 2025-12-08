@@ -1,6 +1,25 @@
+import axios from 'axios'
 import React from 'react'
 
-function ProfileCard({ users }) {
+function ProfileCard({ users, setUsers }) {
+
+    const handleDelete = async (id) => {
+        try {
+            const res = await axios.delete(`https://openuser.onrender.com/api/user/delete/${id}`)
+            console.log(res.data)
+            if (res.status == 200) {
+                const updatedUser = users.filter((user) => {
+                    return user.id != id
+                })
+                setUsers(updatedUser)
+            }
+        } catch (err) {
+            console.log(err.response.message)
+        }
+
+
+    }
+
     return (
         <div className="min-h-screen bg-gray-100 p-8">
             <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
@@ -31,7 +50,9 @@ function ProfileCard({ users }) {
                                 Edit
                             </button>
 
-                            <button className="flex-1 bg-red-600 text-white py-2 rounded-lg font-medium hover:bg-red-700 transition cursor-pointer">
+                            <button
+                                className="flex-1 bg-red-600 text-white py-2 rounded-lg font-medium hover:bg-red-700 transition cursor-pointer"
+                                onClick={() => { handleDelete(user.id) }}>
                                 Delete
                             </button>
                         </div>
