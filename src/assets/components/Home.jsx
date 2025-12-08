@@ -31,7 +31,7 @@ function Home() {
                 </button>
 
             </div>
-            {showAddUser && <AddUser />}
+            {showAddUser && <AddUser getUsers={getUsers} />}
             <ProfileCard users={users} setUsers={setUsers} />
         </div>
     )
