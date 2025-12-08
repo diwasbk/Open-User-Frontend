@@ -22,11 +22,13 @@ function AddUser({ getUsers }) {
             }
             const res = await axios.post("https://openuser.onrender.com/api/user/post", data)
             console.log(res.data)
+            alert(res.data.message)
             setShowSubmit(false)
             getUsers()
 
         } catch (err) {
             console.log(err.response.data)
+            alert(err.response.data.message)
         }
     }
     return (

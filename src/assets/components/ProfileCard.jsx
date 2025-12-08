@@ -11,10 +11,12 @@ function ProfileCard({ users, setUsers }) {
                 const updatedUser = users.filter((user) => {
                     return user.id != id
                 })
+                alert(res.data.message)
                 setUsers(updatedUser)
             }
         } catch (err) {
             console.log(err.response.message)
+            alert(err.response.data.message)
         }
 
 
