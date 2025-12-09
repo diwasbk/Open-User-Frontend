@@ -1,7 +1,10 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
+import UpdateUser from './UpdateUser'
 
 function ProfileCard({ users, setUsers }) {
+
+    const [showUpdate, setShowUpdate] = useState(false)
 
     const handleDelete = async (id) => {
         try {
@@ -18,8 +21,6 @@ function ProfileCard({ users, setUsers }) {
             console.log(err.response.message)
             alert(err.response.data.message)
         }
-
-
     }
 
     return (
@@ -46,9 +47,16 @@ function ProfileCard({ users, setUsers }) {
                             <p><span className="font-medium text-gray-600">Address:</span> {user.address}</p>
                         </div>
 
+                        {/* Update User */}
+                        <div className='mt-5 mb-5'>
+                            {showUpdate && <UpdateUser />}
+                        </div>
+
                         {/* Buttons */}
                         <div className="flex gap-3">
-                            <button className="flex-1 bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition cursor-pointer">
+                            <button
+                                className="flex-1 bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition cursor-pointer"
+                                onClick={() => { setShowUpdate(prev => !prev) }}>
                                 Edit
                             </button>
 
@@ -61,7 +69,7 @@ function ProfileCard({ users, setUsers }) {
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     )
 }
 
