@@ -56,7 +56,7 @@ function ProfileCard({ users, setUsers }) {
                         {/* Update User */}
                         <div className='mt-5 mb-5'>
                             {showUpdate && selectedUser && selectedUser.id === user.id && (
-                                <UpdateUser selectedUser={selectedUser} />
+                                <UpdateUser selectedUser={selectedUser} onClose={() => setShowUpdate(false)} />
                             )}
                         </div>
 

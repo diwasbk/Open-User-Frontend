@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ProfileCard from './ProfileCard'

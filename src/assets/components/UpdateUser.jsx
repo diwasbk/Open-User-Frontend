@@ -1,6 +1,24 @@
-import React from 'react'
+/* eslint-disable react-hooks/set-state-in-effect */
+import React, { useEffect, useState } from 'react'
 
-function UpdateUser() {
+function UpdateUser({ selectedUser, onClose}) {
+
+    const [updateName, setUpdateName] = useState("")
+    const [updateUserName, setUpdateUserName] = useState("")
+    const [updateAge, setUpdateAge] = useState("")
+    const [updateEmail, setUpdateEmail] = useState("")
+    const [updateAddress, setUpdateAddress] = useState("")
+
+    useEffect(() => {
+        if (selectedUser){
+            setUpdateName(selectedUser.name),
+            setUpdateUserName(selectedUser.username),
+            setUpdateAge(selectedUser.age),
+            setUpdateEmail(selectedUser.email),
+            setUpdateAddress(selectedUser.address)
+        }
+    }, [selectedUser])
+    
     return (
         <>
             <div className="mx-auto  bg-gray-100 shadow-md rounded-2xl p-8">
@@ -16,6 +34,8 @@ function UpdateUser() {
                     <input
                         type="text"
                         id="updateName"
+                        value={updateName}
+                        onChange={(e) => { setUpdateName(e.target.value) }}
                         placeholder="e.g. John Doe"
                         required
                         className="w-full border border-gray-300 p-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -30,6 +50,8 @@ function UpdateUser() {
                     <input
                         type="text"
                         id="updateUserName"
+                        value={updateUserName}
+                        onChange={(e) => { setUpdateUserName(e.target.value) }}
                         placeholder="e.g. johndoe123"
                         required
                         className="w-full border border-gray-300 p-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -44,6 +66,8 @@ function UpdateUser() {
                     <input
                         type="text"
                         id="updateAge"
+                        value={updateAge}
+                        onChange={(e) => { setUpdateAge(e.target.value) }}
                         placeholder="e.g. 18"
                         required
                         className="w-full border border-gray-300 p-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -58,6 +82,8 @@ function UpdateUser() {
                     <input
                         type="email"
                         id="updateEmail"
+                        value={updateEmail}
+                        onChange={(e) => { setUpdateEmail(e.target.value) }}
                         placeholder="e.g. johndoe@gmail.com"
                         required
                         className="w-full border border-gray-300 p-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -72,6 +98,8 @@ function UpdateUser() {
                     <input
                         type="text"
                         id="updateAddress"
+                        value={updateAddress}
+                        onChange={(e) => { setUpdateAddress(e.target.value) }}
                         placeholder="e.g. Kathmandu, Nepal"
                         required
                         className="w-full border border-gray-300 p-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -83,6 +111,14 @@ function UpdateUser() {
                     type="submit"
                     className="w-full bg-green-600 text-white font-semibold py-2.5 rounded-lg mt-3 hover:bg-green-500 transition cursor-pointer">
                     Update
+                </button>
+
+                {/* Close */}
+                <button
+                    type="button"
+                    onClick={onClose}
+                    className="w-full bg-gray-800 text-white font-semibold py-2.5 rounded-lg mt-3 hover:bg-gray-700 transition cursor-pointer">
+                    Close
                 </button>
             </div>
         </>
