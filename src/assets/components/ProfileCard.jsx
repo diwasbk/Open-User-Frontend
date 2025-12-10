@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import UpdateUser from './UpdateUser'
+import { toast } from 'react-toastify'
 
 function ProfileCard({ users, setUsers }) {
 
@@ -15,12 +16,12 @@ function ProfileCard({ users, setUsers }) {
                 const updatedUser = users.filter((user) => {
                     return user.id != id
                 })
-                alert(res.data.message)
+                toast.success(res.data.message)
                 setUsers(updatedUser)
             }
         } catch (err) {
             console.log(err.response.message)
-            alert(err.response.data.message)
+            toast.error(err.response.data.message)
         }
     }
 

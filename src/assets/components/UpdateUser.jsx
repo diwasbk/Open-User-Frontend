@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 function UpdateUser({ selectedUser, onClose, setUsers, users }) {
 
@@ -41,11 +42,11 @@ function UpdateUser({ selectedUser, onClose, setUsers, users }) {
 
             // Close the form
             onClose()
-            alert(res.data.message)
+            toast.success(res.data.message)
 
         } catch (err) {
             console.log(err.response.data)
-            alert(err.response.data.message)
+            toast.error(err.response.data.message)
         }
     }
     
