@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/set-state-in-effect */
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-function UpdateUser({ selectedUser, onClose}) {
+function UpdateUser({ selectedUser, onClose }) {
 
     const [updateName, setUpdateName] = useState("")
     const [updateUserName, setUpdateUserName] = useState("")
@@ -10,7 +11,7 @@ function UpdateUser({ selectedUser, onClose}) {
     const [updateAddress, setUpdateAddress] = useState("")
 
     useEffect(() => {
-        if (selectedUser){
+        if (selectedUser) {
             setUpdateName(selectedUser.name),
             setUpdateUserName(selectedUser.username),
             setUpdateAge(selectedUser.age),
@@ -18,6 +19,25 @@ function UpdateUser({ selectedUser, onClose}) {
             setUpdateAddress(selectedUser.address)
         }
     }, [selectedUser])
+
+    const handleUpdate = async (id) => {
+        try {
+            const data = {
+                name: updateName,
+                username: updateUserName,
+                age: updateAge,
+                email: updateEmail,
+                address: updateAddress
+            }
+            const res = await axios.put(`https://openuser.onrender.com/api/user/update/${id}`, data)
+            console.log(res.data)
+            alert(res.data.message)
+
+        } catch (err) {
+            console.log(err.response.data)
+            alert(err.response.data.message)
+        }
+    }
     
     return (
         <>
@@ -109,6 +129,7 @@ function UpdateUser({ selectedUser, onClose}) {
                 {/* Button */}
                 <button
                     type="submit"
+                    onClick={() => { handleUpdate(selectedUser.id) }}
                     className="w-full bg-green-600 text-white font-semibold py-2.5 rounded-lg mt-3 hover:bg-green-500 transition cursor-pointer">
                     Update
                 </button>
