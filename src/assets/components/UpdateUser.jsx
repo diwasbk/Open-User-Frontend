@@ -2,7 +2,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-function UpdateUser({ selectedUser, onClose }) {
+function UpdateUser({ selectedUser, onClose, setUsers, users }) {
 
     const [updateName, setUpdateName] = useState("")
     const [updateUserName, setUpdateUserName] = useState("")
@@ -31,6 +31,16 @@ function UpdateUser({ selectedUser, onClose }) {
             }
             const res = await axios.put(`https://openuser.onrender.com/api/user/update/${id}`, data)
             console.log(res.data)
+
+            // Update the local user state to reflect the changes in the UI
+            // Only the user with matching id is updated, others stay the same
+            const updatedUser = users.map(user =>
+                user.id === id ? { ...user, ...data } : user
+            );
+            setUsers(updatedUser);
+
+            // Close the form
+            onClose()
             alert(res.data.message)
 
         } catch (err) {
