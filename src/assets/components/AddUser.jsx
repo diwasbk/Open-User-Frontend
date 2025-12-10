@@ -146,6 +146,14 @@ function AddUser({ getUsers }) {
                             className="w-full bg-blue-600 text-white font-semibold py-2.5 rounded-lg mt-3 hover:bg-blue-500 transition cursor-pointer">
                             Add User
                         </button>
+                        
+                        {/* Close Button */}
+                        <button
+                            type="button"
+                            onClick={()=>{setShowSubmit(false)}}
+                            className="w-full bg-gray-800 text-white font-semibold py-2.5 rounded-lg mt-3 hover:bg-gray-700 transition cursor-pointer">
+                            Close
+                        </button>
                     </div>
                 </form>
             )}
