@@ -7,14 +7,18 @@ import AddUser from './AddUser'
 function Home() {
     const [users, setUsers] = useState([])
     const [showAddUser, setShowAddUser] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const getUsers = async () => {
         try {
+            setLoading(true);   // Start loading before API call
             const res = await axios.get("https://openuser.onrender.com/api/user")
             console.log(res.data)
             setUsers(res.data.result)
         } catch (err) {
             console.log(err.response.data)
+        } finally {
+            setLoading(false);  // Stop loading after API call finishes
         }
     }
 
@@ -24,7 +28,9 @@ function Home() {
 
     return (
         <div>
+
             <div className='flex justify-end p-6 bg-gray-100'>
+
                 <button
                     onClick={() => setShowAddUser(prev => !prev)}
                     className="w-[200px] p-2 font-bold text-white rounded cursor-pointer flex justify-center bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 transition-colors duration-300">
@@ -32,8 +38,19 @@ function Home() {
                 </button>
 
             </div>
+
             {showAddUser && <AddUser getUsers={getUsers} />}
-            <ProfileCard users={users} setUsers={setUsers} />
+
+            {/* Show loader until users are fetched */}
+            {loading ? (
+                <div className="flex flex-col items-center justify-center p-10">
+                    <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                    <p className="mt-4 font-medium text-gray-600">Loading...</p>
+                </div>
+            ) : (
+                <ProfileCard users={users} setUsers={setUsers} />
+            )}
+
         </div>
     )
 }
