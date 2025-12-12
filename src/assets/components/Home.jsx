@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ProfileCard from './ProfileCard'
 import AddUser from './AddUser'
+import { BASE_URL } from '../../config.js'
 
 function Home() {
     const [users, setUsers] = useState([])
@@ -12,7 +13,7 @@ function Home() {
     const getUsers = async () => {
         try {
             setLoading(true);   // Start loading before API call
-            const res = await axios.get("https://openuser.onrender.com/api/user")
+            const res = await axios.get(`${BASE_URL}`)
             console.log(res.data)
             setUsers(res.data.result)
         } catch (err) {

@@ -2,6 +2,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { BASE_URL } from '../../config.js'
 
 function UpdateUser({ selectedUser, onClose, setUsers, users }) {
 
@@ -30,7 +31,7 @@ function UpdateUser({ selectedUser, onClose, setUsers, users }) {
                 email: updateEmail,
                 address: updateAddress
             }
-            const res = await axios.put(`https://openuser.onrender.com/api/user/update/${id}`, data)
+            const res = await axios.put(`${BASE_URL}/update/${id}`, data)
             console.log(res.data)
 
             // Update the local user state to reflect the changes in the UI

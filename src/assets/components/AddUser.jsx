@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../config.js";
 
 function AddUser({ getUsers }) {
     const [userId, setUserId] = useState("");
@@ -21,7 +22,7 @@ function AddUser({ getUsers }) {
                 age: age,
                 address: address
             }
-            const res = await axios.post("https://openuser.onrender.com/api/user/post", data)
+            const res = await axios.post(`${BASE_URL}/post`, data)
             console.log(res.data)
             toast.success(res.data.message)
             setShowSubmit(false)

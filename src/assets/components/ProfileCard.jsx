@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import UpdateUser from './UpdateUser'
 import { toast } from 'react-toastify'
+import { BASE_URL } from '../../config.js'
 
 function ProfileCard({ users, setUsers }) {
 
@@ -10,7 +11,7 @@ function ProfileCard({ users, setUsers }) {
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`https://openuser.onrender.com/api/user/delete/${id}`)
+            const res = await axios.delete(`${BASE_URL}/delete/${id}`)
             console.log(res.data)
             if (res.status == 200) {
                 const updatedUser = users.filter((user) => {
