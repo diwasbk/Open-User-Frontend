@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { BASE_URL } from "../../config.js";
+import { BASE_URL } from "../config.js";
 
 function AddUser({ getUsers }) {
     const [userId, setUserId] = useState("");

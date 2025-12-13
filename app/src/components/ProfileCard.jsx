@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import UpdateUser from './UpdateUser'
+import UpdateUser from './UpdateUser.jsx'
 import { toast } from 'react-toastify'
-import { BASE_URL } from '../../config.js'
+import { BASE_URL } from '../config.js'
 
 function ProfileCard({ users, setUsers }) {
 

@@ -2,7 +2,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import { BASE_URL } from '../../config.js'
+import { BASE_URL } from '../config.js'
 
 function UpdateUser({ selectedUser, onClose, setUsers, users }) {
 

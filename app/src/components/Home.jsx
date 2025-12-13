@@ -3,7 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ProfileCard from './ProfileCard'
 import AddUser from './AddUser'
-import { BASE_URL } from '../../config.js'
+import { BASE_URL } from '../config.js'
 
 function Home() {
     const [users, setUsers] = useState([])
