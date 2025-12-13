@@ -30,6 +30,8 @@ cd app
 npm install
 ```
 
+---
+
 ## Environment Setup
 
 Create a `.env` file in the `app` folder and define the `VITE_BASE_URL` variable with the API URL.  
@@ -40,6 +42,8 @@ VITE_BASE_URL=<API_URL_HERE>
 ### *Note:*
 *The API URL is available in the [Open User API](https://github.com/diwasbk/Open-User-API) repository
 and may be updated from time to time. Make sure to use the latest URL.*
+
+ ---
  
 ## 🏃 Usage
 
@@ -47,6 +51,8 @@ Start the server:
 ```bash
 npm run dev
 ```
+
+---
 
 ## Author
 
